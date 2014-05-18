@@ -1,7 +1,7 @@
 Dark-Wonderers
 ==============
 
-Project for FMI Python lectures
+Project for FMI Python course
 
 Проектът ще представлява Turn based browser игра. Ще има малак campaign/tutorial, но като цяло ще е PvP ореантирана.
 Целта на играчите ще е да превземат противниковите градове. И да го оставят без жив герой.
