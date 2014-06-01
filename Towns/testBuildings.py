@@ -4,29 +4,17 @@ from Buildings import *
 
 
 class TestBuilding(unittest.TestCase):
-    def test_upgrade_is_available_1(self):
-        temp = Building(100, 8)
-        self.assertTrue(temp.upgrade_is_available())
 
     def test_upgrade(self):
-        temp = Building(100, 8)
-        temp.upgrade()
-        self.assertFalse(temp.upgrade_is_available())
-        self.assertEqual(2, temp.level)
+        building1 = Building(100, 8)
+        building2 = Building(50, 2)
 
-    def test_upgrade_is_available_2(self):
-        temp = Building(100, 8)
-        temp.level = 10
-        self.assertFalse(temp.upgrade_is_available())
+        building1.upgrade()
+        self.assertEqual(2, building1.level)
 
-        temp.builded_this_turn = False
-        self.assertFalse(temp.upgrade_is_available())
-
-
-    @unittest.skip('No money modul')
-    def test_upgrade_is_available_3(self):
-        temp = Building(1000, 10)
-        self.assertFalse(temp.upgrade_is_available())
+        building2.upgrade()
+        self.assertEqual(2, building2.level)
+        self.assertEqual(100, building2.price)
 
 
 class TestGoldMine(unittest.TestCase):
@@ -41,6 +29,7 @@ class TestGoldMine(unittest.TestCase):
         self.assertEqual(1000, self.gold_mine.get_income())
         self.assertEqual(2, self.gold_mine.level)
         self.assertNotEqual(500, self.gold_mine.get_income())
+        self.assertEqual(1000, self.gold_mine.price)
 
 
 class TestWall(unittest.TestCase):
@@ -48,14 +37,26 @@ class TestWall(unittest.TestCase):
         self.wall = Wall()
 
     def test_wall(self):
-        self.assertEqual(1, self.wall.get_bonus_defence())
-        self.assertEqual(0.5, self.wall.get_bonus_range_attack())
+        self.assertEqual(1, self.wall.give_bonus_defence())
+        self.assertEqual(0.5, self.wall.give_bonus_range_attack())
 
-    def test_wall_upgrade(self):
+    def test_upgrade_wall(self):
         self.wall.upgrade()
-        self.assertEqual(2, self.wall.get_bonus_defence())
-        self.assertNotEqual(1, self.wall.get_bonus_defence())
-        self.assertEqual(1, self.wall.get_bonus_range_attack())
+        self.assertEqual(2, self.wall.give_bonus_defence())
+        self.assertNotEqual(1, self.wall.give_bonus_defence())
+        self.assertEqual(1, self.wall.give_bonus_range_attack())
+
+@unittest.skip('I am not sure how it should work')
+class TestBarracs(unittest.TestCase):
+    pass
+
+
+class TestCastle(unittest.TestCase):
+    def test_upgrade(self):
+        castle = Castle()
+        castle.upgrade()
+        self.assertEqual(2, castle.level)
+        self.assertEqual(2000, castle.price)
 
 
 if __name__ == '__main__':

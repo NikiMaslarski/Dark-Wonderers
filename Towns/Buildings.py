@@ -1,22 +1,14 @@
 class Building:
     """ Abstract class inherited by all the buildings """
-    level = 1
-    builded_this_turn = False
 
-    def __init__(self, price, max_level):
+    def __init__(self, price, max_level, level=1):
         self.price = price
         self.max_level = max_level
-
-    def upgrade_is_available(self):
-        return self.level < self.max_level \
-               and not self.builded_this_turn \
-              # and self.price < money
-        ### money is not defined :/
+        self.level = level
 
     def upgrade(self):
-        if self.upgrade_is_available():
-            self.level += 1
-            self.builded_this_turn = True
+        self.level += 1
+        self.price *= 2
 
 
 class Gold_mine(Building):
@@ -31,8 +23,29 @@ class Wall(Building):
     def __init__(self):
         Building.__init__(self, 200, 20)
 
-    def get_bonus_defence(self):
+    def give_bonus_defence(self):
         return self.level
 
-    def get_bonus_range_attack(self):
+    def give_bonus_range_attack(self):
         return 0.5* self.level
+
+
+class Barracs(Building):
+    """ Accepts four element list with the army of
+        the race it belongs to """
+
+    def __init__(self, army):
+        self.army = army
+        Building.__init__(self, 500, 5)
+
+
+class Castle(Building):
+    """ Units trained each day are based
+        on the level of the castle"""
+
+    def __init__(self):
+        Building.__init__(self, 1000, 3)
+
+
+
+
