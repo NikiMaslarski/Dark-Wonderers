@@ -18,6 +18,7 @@ class Building:
             self.level += 1
             self.builded_this_turn = True
 
+
 class Gold_mine(Building):
     def __init__(self):
         Building.__init__(self, 500, 10)
@@ -26,4 +27,12 @@ class Gold_mine(Building):
         return 500 * self.level
 
 
+class Wall(Building):
+    def __init__(self):
+        Building.__init__(self, 200, 20)
 
+    def get_bonus_defence(self):
+        return self.level
+
+    def get_bonus_range_attack(self):
+        return 0.5* self.level

@@ -36,11 +36,27 @@ class TestGoldMine(unittest.TestCase):
     def test_get_income(self):
         self.assertEqual(500, self.gold_mine.get_income())
 
-    def test_upgrade(self):
+    def test_upgrade_mine(self):
         self.gold_mine.upgrade()
         self.assertEqual(1000, self.gold_mine.get_income())
         self.assertEqual(2, self.gold_mine.level)
         self.assertNotEqual(500, self.gold_mine.get_income())
+
+
+class TestWall(unittest.TestCase):
+    def setUp(self):
+        self.wall = Wall()
+
+    def test_wall(self):
+        self.assertEqual(1, self.wall.get_bonus_defence())
+        self.assertEqual(0.5, self.wall.get_bonus_range_attack())
+
+    def test_wall_upgrade(self):
+        self.wall.upgrade()
+        self.assertEqual(2, self.wall.get_bonus_defence())
+        self.assertNotEqual(1, self.wall.get_bonus_defence())
+        self.assertEqual(1, self.wall.get_bonus_range_attack())
+
 
 if __name__ == '__main__':
     unittest.main()
