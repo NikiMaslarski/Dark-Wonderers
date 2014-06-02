@@ -34,3 +34,6 @@ DWARF_UNITS = {'miner': Unit_status(30, 300, 1, 10, 0, 300, 1), \
                'priest': Unit_status(40, 250, 1, 10, 3, 400, 3), \
                'crossbow': Unit_status(45, 400, 1, 10, 2, 300, 5),\
                'hammer': Unit_status(100, 600, 1, 10, 1, 300, 8)}
+
+ALL_RACE_UNITS = {'elf': ELF_UNITS, 'troll': TROLL_UNITS, \
+                  'human': HUMAN_UNITS, 'dwarf':DWARF_UNITS}

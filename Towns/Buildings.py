@@ -1,5 +1,4 @@
 class Building:
-    """ Abstract class inherited by all the buildings """
 
     def __init__(self, price, max_level, level=1):
         self.price = price
