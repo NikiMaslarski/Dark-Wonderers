@@ -1,5 +1,7 @@
 import sys
-sys.path.append('/home/niki/DarkWonderers/Dark-Wonderers/Units')
+import os
+os.chdir('../Units')
+sys.path.append(os.getcwd())
 
 from Buildings import Gold_mine, Wall, Castle, Barracs
 from Units import ALL_RACE_UNITS
