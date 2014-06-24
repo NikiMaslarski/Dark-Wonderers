@@ -53,3 +53,6 @@ coverage.xml
 docs/_build/
 
 *.swp
+
+#Folder with problems
+Tests/
