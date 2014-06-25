@@ -1,5 +1,6 @@
 class Unit_status:
-    """ Abstract class inherited by all the units """
+    """ Arguments: price, health, type of armor, amount of armor,
+        type of damage, amount of damage, level requiered to hire this unit """
     ARMOR_TYPES = ['light', 'heavy']
     DAMAGE_TYPES = ['normal', 'heavy', 'range', 'magic', 'swift']
 

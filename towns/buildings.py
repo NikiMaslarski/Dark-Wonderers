@@ -1,5 +1,4 @@
 class Building:
-
     def __init__(self, price, max_level, level=1):
         self.price = price
         self.max_level = max_level
