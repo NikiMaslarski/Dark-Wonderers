@@ -54,4 +54,7 @@ docs/_build/
 
 *.swp
 
+# Useles files
+to_do_list
+
 #Folder with problems
