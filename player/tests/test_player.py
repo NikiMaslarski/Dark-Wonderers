@@ -11,6 +11,7 @@ from player import *
 from buildings import *
 import towns
 
+
 class TestPlayer(unittest.TestCase):
     def setUp(self):
         self.player = Player('troll')
@@ -28,8 +29,6 @@ class TestPlayer(unittest.TestCase):
         self.player.money = 100
         self.assertFalse(self.player.upgrade_building(self.player.town.wall))
         self.assertEqual(self.player.money, 100)
-
-
 
 
 

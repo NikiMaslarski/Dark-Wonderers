@@ -6,6 +6,7 @@ class Hero:
         self.experience_to_level_up = 200*self.level
         self.bonuses = {'damage':0, 'defence':0, 'health':0}
         self.is_in_town = True
+        self.army = [0, 0, 0, 0]
 
     def level_up(self):
         if self.experience_to_level_up < self.experience:
@@ -18,3 +19,13 @@ class Hero:
 
     def leave_town(self):
         self.is_in_town = False
+
+    def increace_army(self, unit_type, unit_count):
+        self.army[unit_type] += unit_count
+
+    def decreace_army(self, unit_type, unit_count):
+        if self.army[unit_type] >= unit_count:
+            self.army[unit_type] -= unit_count
+            return True
+        else:
+            return False

@@ -17,3 +17,8 @@ class Town:
     def increace_army(self, unit_type, unit_count):
         self.army[unit_type] += unit_count
 
+    def decrease_army(self, unit_type, unit_count):
+        if self.army[unit_type] >= unit_count:
+            self.army[unit_type] -= unit_count
+            return True
+        return False

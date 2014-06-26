@@ -7,7 +7,7 @@ sys.path.append(os.getcwd())
 
 import hero
 
-class TestHeroe(unittest.TestCase):
+class TestHero(unittest.TestCase):
     def setUp(self):
         self.hero = hero.Hero('San')
 
@@ -23,8 +23,20 @@ class TestHeroe(unittest.TestCase):
         self.assertEqual(self.hero.experience, 45)
         self.assertEqual(self.hero.experience_to_level_up, 300)
 
+    def test_town_conditions(self):
+        self.assertTrue(self.hero.is_in_town)
+        self.hero.leave_town()
+        self.assertFalse(self.hero.is_in_town)
+        self.hero.arrive_at_town()
 
-
+    def test_increace_decreace_army(self):
+        self.hero.increace_army(1, 20)
+        self.assertEqual(self.hero.army, [0, 20, 0, 0])
+        self.assertTrue(self.hero.decreace_army(1, 10))
+        self.assertEqual(self.hero.army, [0, 10, 0, 0])
+        self.assertFalse(self.hero.decreace_army(1, 40))
+        self.hero.increace_army(3, 100)
+        self.assertEqual(self.hero.army, [0, 10, 0, 100])
 
 
 if __name__ == '__main__':
