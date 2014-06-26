@@ -2,12 +2,13 @@ import sys
 import os
 os.chdir('../units')
 sys.path.append(os.getcwd())
+os.chdir('../exceptiones')
+sys.path.append(os.getcwd())
 
 from buildings import Gold_mine, Wall, Castle, Barracs
 from units import ALL_RACE_UNITS
+from exceptiones import NoUnits
 
-class no_army(Exception):
-    'Not enough army'
 
 class Town:
     def __init__(self, race):
@@ -23,5 +24,5 @@ class Town:
 
     def decrease_army(self, unit_type, unit_count):
         if self.army[unit_type] < unit_count:
-            raise no_army
+            raise NoUnits
         self.army[unit_type] -= unit_count

@@ -1,3 +1,11 @@
+import os
+import sys
+os.chdir('../exceptiones')
+sys.path.append(os.getcwd())
+
+from exceptiones import NoUnits, NoTalentPoints
+
+
 class Hero:
     def __init__(self, name):
         self.name = name
@@ -25,11 +33,10 @@ class Hero:
         self.army[unit_type] += unit_count
 
     def decrease_army(self, unit_type, unit_count):
-        if self.army[unit_type] >= unit_count:
-            self.army[unit_type] -= unit_count
-            return True
-        else:
-            return False
+        if self.army[unit_type] < unit_count:
+            raise NoUnits
+
+        self.army[unit_type] -= unit_count
 
     def upgrade_bonus(self, bonus):
         """
@@ -38,8 +45,7 @@ class Hero:
         Spends talent points
         """
         if self.talent_points <= 0:
-            raise Exception('Not enough talent points')
+            raise NoTalentPoints
 
         self.bonuses[bonus] += 1
         self.talent_points -= 1
-

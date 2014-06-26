@@ -6,7 +6,7 @@ os.chdir('..')
 sys.path.append(os.getcwd())
 
 from buildings import Wall, Gold_mine, Castle, Barracs
-from towns import Town, no_army
+from towns import Town, NoUnits
 
 class TestTown(unittest.TestCase):
     def setUp(self):
@@ -23,13 +23,14 @@ class TestTown(unittest.TestCase):
              ['archer','rogue', 'druid', 'assassin'])
 
     def test_increase_decrease_army(self):
-        self.assertRaises(no_army, self.town.decrease_army, 1, 3)
+        self.assertRaises(NoUnits, self.town.decrease_army, 1, 3)
         self.assertEqual([10, 0, 0, 0], self.town.army)
         self.town.increase_army(1, 20)
         self.assertEqual([10, 20, 0, 0], self.town.army)
         self.town.decrease_army(0, 5)
         self.assertEqual([5, 20, 0, 0], self.town.army)
         self.assertEqual([5, 20, 0, 0], self.town.army)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -5,11 +5,11 @@ import sys
 os.chdir('..')
 sys.path.append(os.getcwd())
 
-import hero
+from hero import Hero, NoUnits, NoTalentPoints
 
 class TestHero(unittest.TestCase):
     def setUp(self):
-        self.hero = hero.Hero('San')
+        self.hero = Hero('San')
 
     def test_hero_constructor(self):
         self.assertEqual(self.hero.name, 'San')
@@ -32,9 +32,9 @@ class TestHero(unittest.TestCase):
     def test_increase_decrease_army(self):
         self.hero.increase_army(1, 20)
         self.assertEqual(self.hero.army, [0, 20, 0, 0])
-        self.assertTrue(self.hero.decrease_army(1, 10))
+        self.hero.decrease_army(1, 10)
         self.assertEqual(self.hero.army, [0, 10, 0, 0])
-        self.assertFalse(self.hero.decrease_army(1, 40))
+        self.assertRaises(NoUnits, self.hero.decrease_army, 1, 40)
         self.hero.increase_army(3, 100)
         self.assertEqual(self.hero.army, [0, 10, 0, 100])
 
@@ -42,6 +42,8 @@ class TestHero(unittest.TestCase):
         self.hero.upgrade_bonus('health')
         self.assertEqual(self.hero.bonuses['health'], 1)
         self.assertEqual(self.hero.bonuses['damage'], 0)
+        self.hero.talent_points = 0
+        self.assertRaises(NoTalentPoints, self.hero.upgrade_bonus, 'damage')
 
 
 if __name__ == '__main__':
