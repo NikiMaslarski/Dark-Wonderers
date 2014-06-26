@@ -29,18 +29,19 @@ class TestHero(unittest.TestCase):
         self.assertFalse(self.hero.is_in_town)
         self.hero.arrive_at_town()
 
-    def test_increace_decreace_army(self):
-        self.hero.increace_army(1, 20)
+    def test_increase_decrease_army(self):
+        self.hero.increase_army(1, 20)
         self.assertEqual(self.hero.army, [0, 20, 0, 0])
-        self.assertTrue(self.hero.decreace_army(1, 10))
+        self.assertTrue(self.hero.decrease_army(1, 10))
         self.assertEqual(self.hero.army, [0, 10, 0, 0])
-        self.assertFalse(self.hero.decreace_army(1, 40))
-        self.hero.increace_army(3, 100)
+        self.assertFalse(self.hero.decrease_army(1, 40))
+        self.hero.increase_army(3, 100)
         self.assertEqual(self.hero.army, [0, 10, 0, 100])
 
     def test_upgrade_bonus(self):
         self.hero.upgrade_bonus('health')
-        self.assertEqual(self.hero.bonuses, [0, 0, 1])
+        self.assertEqual(self.hero.bonuses['health'], 1)
+        self.assertEqual(self.hero.bonuses['damage'], 0)
 
 
 if __name__ == '__main__':

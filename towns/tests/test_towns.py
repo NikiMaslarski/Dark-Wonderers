@@ -22,10 +22,10 @@ class TestTown(unittest.TestCase):
         for minion in ['archer','rogue','druid','assasin']:
             self.assertTrue(minion in self.town.barracs.army.keys())
 
-    def test_increace_decreace_army(self):
+    def test_increase_decrease_army(self):
         self.assertRaises(no_army, self.town.decrease_army, 1, 3)
         self.assertEqual([10, 0, 0, 0], self.town.army)
-        self.town.increace_army(1, 20)
+        self.town.increase_army(1, 20)
         self.assertEqual([10, 20, 0, 0], self.town.army)
         self.town.decrease_army(0, 5)
         self.assertEqual([5, 20, 0, 0], self.town.army)

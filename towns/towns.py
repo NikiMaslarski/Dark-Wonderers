@@ -17,7 +17,7 @@ class Town:
         self.barracs = Barracs( ALL_RACE_UNITS[race] )
         self.army = [10, 0, 0, 0]
 
-    def increace_army(self, unit_type, unit_count):
+    def increase_army(self, unit_type, unit_count):
         self.army[unit_type] += unit_count
 
     def decrease_army(self, unit_type, unit_count):

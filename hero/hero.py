@@ -21,10 +21,10 @@ class Hero:
     def leave_town(self):
         self.is_in_town = False
 
-    def increace_army(self, unit_type, unit_count):
+    def increase_army(self, unit_type, unit_count):
         self.army[unit_type] += unit_count
 
-    def decreace_army(self, unit_type, unit_count):
+    def decrease_army(self, unit_type, unit_count):
         if self.army[unit_type] >= unit_count:
             self.army[unit_type] -= unit_count
             return True
