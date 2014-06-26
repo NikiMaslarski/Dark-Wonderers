@@ -63,12 +63,18 @@ class TestBarracs(unittest.TestCase):
 
 
 class TestCastle(unittest.TestCase):
+    def setUp(self):
+        self.castle = Castle()
     def test_upgrade(self):
-        castle = Castle()
-        self.assertEqual(1, castle.level)
-        castle.upgrade()
-        self.assertEqual(2, castle.level)
-        self.assertEqual(1980, castle.price)
+        self.assertEqual(1, self.castle.level)
+        self.castle.upgrade()
+        self.assertEqual(2, self.castle.level)
+        self.assertEqual(1980, self.castle.price)
+
+    def test_get_units_for_training(self):
+        self.assertEqual(self.castle.units_available_to_train, 100)
+        self.castle.get_units_for_training()
+        self.assertEqual(self.castle.units_available_to_train, 200)
 
 
 if __name__ == '__main__':

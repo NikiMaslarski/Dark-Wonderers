@@ -52,5 +52,7 @@ class Castle(Building):
 
     def __init__(self):
         Building.__init__(self, 1000, 3)
+        self.units_available_to_train = 100*self.level
 
-
+    def get_units_for_training(self):
+        self.units_available_to_train += 100*self.level

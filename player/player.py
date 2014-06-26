@@ -39,8 +39,6 @@ class Player:
 
         self.town.decrease_army(unit_type, unit_count)
         self.hero.increase_army(unit_type, unit_count)
-   #    self.town.army[unit_type] -= unit_count
-   #    self.hero.army[unit_type] += unit_count
 
 
     def move_army_from_hero_to_town(self, unit_type, unit_count):
@@ -55,5 +53,3 @@ class Player:
 
         self.hero.decrease_army(unit_type, unit_count)
         self.town.increase_army(unit_type, unit_count)
-   #    self.hero.army[unit_type] -= unit_count
-   #    self.town.army[unit_type] += unit_count
