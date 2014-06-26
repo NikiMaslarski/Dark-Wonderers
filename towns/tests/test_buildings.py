@@ -8,17 +8,24 @@ from buildings import *
 
 
 class TestBuilding(unittest.TestCase):
+    def setUp(self):
+        self.building1 = Building(100, 8)
+        self.building2 = Building(50, 2)
 
     def test_upgrade(self):
-        building1 = Building(100, 8)
-        building2 = Building(50, 2)
+        self.building1.upgrade()
+        self.assertEqual(2, self.building1.level)
 
-        building1.upgrade()
-        self.assertEqual(2, building1.level)
+        self.assertTrue(self.building2.upgrade())
+        self.assertFalse(self.building2.upgrade())
+        self.assertEqual(2, self.building2.level)
+        self.assertEqual(80, self.building2.price)
+        self.assertEqual(80, self.building2.cost_to_upgrade())
 
-        building2.upgrade()
-        self.assertEqual(2, building2.level)
-        self.assertEqual(100, building2.price)
+    def test_can_upgrade(self):
+        self.assertTrue(self.building1.can_upgrade())
+        self.building2.upgrade()
+        self.assertFalse(self.building2.can_upgrade())
 
 
 class TestGoldMine(unittest.TestCase):
@@ -33,7 +40,7 @@ class TestGoldMine(unittest.TestCase):
         self.assertEqual(1000, self.gold_mine.get_income())
         self.assertEqual(2, self.gold_mine.level)
         self.assertNotEqual(500, self.gold_mine.get_income())
-        self.assertEqual(1000, self.gold_mine.price)
+        self.assertEqual(980, self.gold_mine.price)
 
 
 class TestWall(unittest.TestCase):
@@ -58,9 +65,10 @@ class TestBarracs(unittest.TestCase):
 class TestCastle(unittest.TestCase):
     def test_upgrade(self):
         castle = Castle()
+        self.assertEqual(1, castle.level)
         castle.upgrade()
         self.assertEqual(2, castle.level)
-        self.assertEqual(2000, castle.price)
+        self.assertEqual(1980, castle.price)
 
 
 if __name__ == '__main__':

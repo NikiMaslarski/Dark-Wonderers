@@ -5,11 +5,11 @@ import sys
 os.chdir('..')
 sys.path.append(os.getcwd())
 
-from hero import *
+import hero
 
 class TestHeroe(unittest.TestCase):
     def setUp(self):
-        self.hero = Hero('San')
+        self.hero = hero.Hero('San')
 
     def test_hero_constructor(self):
         self.assertEqual(self.hero.name, 'San')
@@ -21,7 +21,7 @@ class TestHeroe(unittest.TestCase):
 
         self.assertEqual(self.hero.level, 2)
         self.assertEqual(self.hero.experience, 45)
-        self.assertEqual(self.hero.experience_to_level_up, 400)
+        self.assertEqual(self.hero.experience_to_level_up, 300)
 
 
 

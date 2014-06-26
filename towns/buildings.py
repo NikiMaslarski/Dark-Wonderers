@@ -5,8 +5,17 @@ class Building:
         self.level = level
 
     def upgrade(self):
+        if(self.max_level == self.level):
+            return False
         self.level += 1
-        self.price *= 2
+        self.price = self.price*2 - 10*self.level
+        return True
+
+    def cost_to_upgrade(self):
+        return self.price
+
+    def can_upgrade(self):
+        return self.level < self.max_level
 
 
 class Gold_mine(Building):
