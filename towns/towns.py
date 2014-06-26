@@ -6,6 +6,9 @@ sys.path.append(os.getcwd())
 from buildings import Gold_mine, Wall, Castle, Barracs
 from units import ALL_RACE_UNITS
 
+class no_army(Exception):
+    'Not enough army'
+
 class Town:
     def __init__(self, race):
         self.gold_mine = Gold_mine()
@@ -18,7 +21,6 @@ class Town:
         self.army[unit_type] += unit_count
 
     def decrease_army(self, unit_type, unit_count):
-        if self.army[unit_type] >= unit_count:
-            self.army[unit_type] -= unit_count
-            return True
-        return False
+        if self.army[unit_type] < unit_count:
+            raise no_army
+        self.army[unit_type] -= unit_count

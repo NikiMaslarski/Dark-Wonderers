@@ -6,7 +6,7 @@ os.chdir('..')
 sys.path.append(os.getcwd())
 
 from buildings import Wall, Gold_mine, Castle, Barracs
-from towns import Town
+from towns import Town, no_army
 
 class TestTown(unittest.TestCase):
     def setUp(self):
@@ -23,12 +23,12 @@ class TestTown(unittest.TestCase):
             self.assertTrue(minion in self.town.barracs.army.keys())
 
     def test_increace_decreace_army(self):
+        self.assertRaises(no_army, self.town.decrease_army, 1, 3)
         self.assertEqual([10, 0, 0, 0], self.town.army)
         self.town.increace_army(1, 20)
         self.assertEqual([10, 20, 0, 0], self.town.army)
-        self.assertTrue(self.town.decrease_army(0, 5))
+        self.town.decrease_army(0, 5)
         self.assertEqual([5, 20, 0, 0], self.town.army)
-        self.assertFalse(self.town.decrease_army(1, 30))
         self.assertEqual([5, 20, 0, 0], self.town.army)
 
 if __name__ == '__main__':

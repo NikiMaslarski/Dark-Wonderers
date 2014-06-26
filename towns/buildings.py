@@ -54,4 +54,3 @@ class Castle(Building):
         Building.__init__(self, 1000, 3)
 
 
-

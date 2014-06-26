@@ -13,6 +13,7 @@ class Player:
         self.race = race
         self.town = Town(race)
         self.money = 1000
+        self.hero = None
 
     def hire_hero(self, name):
         self.hero = Hero(name)
@@ -23,4 +24,32 @@ class Player:
                 self.money -= building.cost_to_upgrade()
                 building.upgrade()
                 return True
-            return False
+        return False
+
+    def move_army_from_town_to_hero(self, unit_type, unit_count):
+        if self.hero.is_in_town == False:
+            raise Exception('Hero need to be in town')
+
+        if self.hero == None:
+            raise Exception('No hero in town')
+
+        if self.town.army[unit_type] < unit_count:
+            raise Exception('Not enough army')
+
+
+        self.town.army[unit_type] -= unit_count
+        self.hero.army[unit_type] += unit_count
+
+
+    def move_army_from_hero_to_town(self, unit_type, unit_count):
+        if self.hero == None:
+            raise Exception('No hero')
+
+        if self.hero.is_in_town == False:
+            raise Exception('Hero not in town')
+
+        if self.hero.army[unit_type] < unit_count:
+            raise Exception('Not enough army')
+
+        self.hero.army[unit_type] -= unit_count
+        self.town.army[unit_type] += unit_count
