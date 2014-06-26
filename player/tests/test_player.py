@@ -24,10 +24,9 @@ class TestPlayer(unittest.TestCase):
         self.player.hire_hero('San')
 
     def test_upgrade_building(self):
-        self.assertTrue(self.player.upgrade_building(self.player.town.wall))
+        self.player.upgrade_building(self.player.town.wall)
         self.assertEqual(self.player.gold, 800)
         self.player.gold = 100
-        self.assertFalse(self.player.upgrade_building(self.player.town.wall))
         self.assertEqual(self.player.gold, 100)
 
     def test_move_army_to_hero(self):

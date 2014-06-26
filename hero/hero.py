@@ -33,7 +33,7 @@ class Hero:
 
     def upgrade_bonus(self, bonus):
         """
-        Accepts argument stwing with the bonus you
+        Accepts string with the bonus you
         want to upgrade ('damage', 'defence', 'health')
         Spends talent points
         """

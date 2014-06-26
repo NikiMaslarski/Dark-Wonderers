@@ -11,10 +11,7 @@ class Building:
         self.price = self.price*2 - 10*self.level
         return True
 
-    def cost_to_upgrade(self):
-        return self.price
-
-    def can_upgrade(self):
+    def upgrade_available(self):
         return self.level < self.max_level
 
 
@@ -38,8 +35,8 @@ class Wall(Building):
 
 
 class Barracs(Building):
-    """ Accepts four element list with the army of
-        the race it belongs to """
+    """ Accepts four element list with the army(unit names only)
+        of the race it belongs to """
 
     def __init__(self, units):
         Building.__init__(self, 500, 5)

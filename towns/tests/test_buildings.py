@@ -23,12 +23,11 @@ class TestBuilding(unittest.TestCase):
         self.assertFalse(self.building2.upgrade())
         self.assertEqual(2, self.building2.level)
         self.assertEqual(80, self.building2.price)
-        self.assertEqual(80, self.building2.cost_to_upgrade())
 
     def test_can_upgrade(self):
-        self.assertTrue(self.building1.can_upgrade())
+        self.assertTrue(self.building1.upgrade_available())
         self.building2.upgrade()
-        self.assertFalse(self.building2.can_upgrade())
+        self.assertFalse(self.building2.upgrade_available())
 
 
 class TestGoldMine(unittest.TestCase):
@@ -66,7 +65,8 @@ class TestBarracs(unittest.TestCase):
         self.barracks = Barracs(ALL_RACE_UNITS['elf'])
 
     def test_army(self):
-        self.assertEqual(self.barracks.army, ['archer', 'rogue', 'druid', 'assassin'])
+        self.assertEqual(self.barracks.army,\
+             ['archer', 'rogue', 'druid', 'assassin'])
 
 
 class TestCastle(unittest.TestCase):

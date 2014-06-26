@@ -16,6 +16,7 @@ class Town:
         self.castle = Castle()
         self.barracs = Barracs( ALL_RACE_UNITS[race] )
         self.army = [10, 0, 0, 0]
+        self.can_build = True
 
     def increase_army(self, unit_type, unit_count):
         self.army[unit_type] += unit_count

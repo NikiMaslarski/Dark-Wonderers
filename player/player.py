@@ -22,12 +22,15 @@ class Player:
         self.hero = Hero(name)
 
     def upgrade_building(self, building):
-        if building.cost_to_upgrade() <= self.gold:
-            if building.can_upgrade():
-                self.gold -= building.cost_to_upgrade()
-                building.upgrade()
-                return True
-        return False
+        """ Accepts the building you want to upgrade """
+        if building.price > self.gold:
+            raise Exception('Not enough gold')
+
+        if not building.upgrade_available():
+            raise Exception('Building at maximum level')
+
+        self.gold -= building.price
+        building.upgrade()
 
     def move_army_from_town_to_hero(self, unit_type, unit_count):
         if self.hero.is_in_town == False:
@@ -42,7 +45,6 @@ class Player:
         self.town.decrease_army(unit_type, unit_count)
         self.hero.increase_army(unit_type, unit_count)
 
-
     def move_army_from_hero_to_town(self, unit_type, unit_count):
         if self.hero == None:
             raise Exception('No hero')
@@ -55,7 +57,6 @@ class Player:
 
         self.hero.decrease_army(unit_type, unit_count)
         self.town.increase_army(unit_type, unit_count)
-
 
     def train_army(self, unit_type, unit_count):
         if self.town.castle.units_available_to_train < unit_count:
