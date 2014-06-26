@@ -7,6 +7,7 @@ class Hero:
         self.bonuses = {'damage':0, 'defence':0, 'health':0}
         self.is_in_town = True
         self.army = [0, 0, 0, 0]
+        self.talent_points = 4
 
     def level_up(self):
         if self.experience_to_level_up < self.experience:
@@ -29,3 +30,16 @@ class Hero:
             return True
         else:
             return False
+
+    def upgrade_bonus(self, bonus):
+        """
+        Accepts argument stwing with the bonus you
+        want to upgrade ('damage', 'defence', 'health')
+        Spends talent points
+        """
+        if self.talent_points <= 0:
+            raise Exception('Not enough talent points')
+
+        self.bonuses[bonus] += 1
+        self.talent_points -= 1
+

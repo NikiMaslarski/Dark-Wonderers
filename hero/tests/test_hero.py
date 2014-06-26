@@ -38,6 +38,10 @@ class TestHero(unittest.TestCase):
         self.hero.increace_army(3, 100)
         self.assertEqual(self.hero.army, [0, 10, 0, 100])
 
+    def test_upgrade_bonus(self):
+        self.hero.upgrade_bonus('health')
+        self.assertEqual(self.hero.bonuses, [0, 0, 1])
+
 
 if __name__ == '__main__':
     unittest.main()
