@@ -41,9 +41,11 @@ class Barracs(Building):
     """ Accepts four element list with the army of
         the race it belongs to """
 
-    def __init__(self, army):
-        self.army = army
+    def __init__(self, units):
         Building.__init__(self, 500, 5)
+        self.army = []
+        for unit in units:
+            self.army.append(unit)
 
 
 class Castle(Building):
@@ -54,5 +56,6 @@ class Castle(Building):
         Building.__init__(self, 1000, 3)
         self.units_available_to_train = 100*self.level
 
-    def get_units_for_training(self):
+    def get_daily_units_for_training(self):
         self.units_available_to_train += 100*self.level
+

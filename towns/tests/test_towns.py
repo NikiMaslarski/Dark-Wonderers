@@ -19,8 +19,8 @@ class TestTown(unittest.TestCase):
         self.assertIsInstance(self.town.barracs, Barracs)
 
     def test_town_army(self):
-        for minion in ['archer','rogue','druid','assasin']:
-            self.assertTrue(minion in self.town.barracs.army.keys())
+        self.assertEqual(self.town.barracs.army, \
+             ['archer','rogue', 'druid', 'assassin'])
 
     def test_increase_decrease_army(self):
         self.assertRaises(no_army, self.town.decrease_army, 1, 3)

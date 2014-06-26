@@ -3,8 +3,11 @@ import os
 import sys
 os.chdir('..')
 sys.path.append(os.getcwd())
+os.chdir('../units')
+sys.path.append(os.getcwd())
 
 from buildings import *
+from units import ALL_RACE_UNITS
 
 
 class TestBuilding(unittest.TestCase):
@@ -57,9 +60,13 @@ class TestWall(unittest.TestCase):
         self.assertNotEqual(1, self.wall.give_bonus_defence())
         self.assertEqual(1, self.wall.give_bonus_range_attack())
 
-@unittest.skip('I am not sure how it should work')
+
 class TestBarracs(unittest.TestCase):
-    pass
+    def setUp(self):
+        self.barracks = Barracs(ALL_RACE_UNITS['elf'])
+
+    def test_army(self):
+        self.assertEqual(self.barracks.army, ['archer', 'rogue', 'druid', 'assassin'])
 
 
 class TestCastle(unittest.TestCase):
@@ -73,7 +80,7 @@ class TestCastle(unittest.TestCase):
 
     def test_get_units_for_training(self):
         self.assertEqual(self.castle.units_available_to_train, 100)
-        self.castle.get_units_for_training()
+        self.castle.get_daily_units_for_training()
         self.assertEqual(self.castle.units_available_to_train, 200)
 
 
