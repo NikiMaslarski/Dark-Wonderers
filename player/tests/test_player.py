@@ -14,7 +14,7 @@ import towns
 
 class TestPlayer(unittest.TestCase):
     def setUp(self):
-        self.player = Player('troll')
+        self.player = Player('Playe1' , 'troll')
 
     def test_player(self):
         self.assertIsInstance(self.player.town, Town)

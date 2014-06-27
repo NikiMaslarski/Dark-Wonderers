@@ -22,5 +22,5 @@ class NoHero(Exception):
     "Pleace buy a hero"
 
 
-class NotEnoughUnitsForTraining(Exception):
+class NoDailyUnits(Exception):
     "You can't "

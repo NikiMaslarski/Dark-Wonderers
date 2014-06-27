@@ -14,15 +14,16 @@ from hero import Hero
 from units import ALL_RACE_UNITS
 from exceptiones import BuildingAtMaxLevel, NoGold
 from exceptiones import HeroNotInTown, NoUnits, NoHero
-from exceptiones import NotEnoughUnitsForTraining
+from exceptiones import NoDailyUnits
 
 
 class Player:
-    def __init__(self, race):
+    def __init__(self, name, race):
         self.race = race
         self.town = Town(race)
         self.gold = 1000
         self.hero = None
+        self.name = name
 
     def hire_hero(self, name):
         self.hero = Hero(name)
@@ -66,7 +67,7 @@ class Player:
 
     def train_army(self, unit_type, unit_count):
         if self.town.castle.units_available_to_train < unit_count:
-            raise NotEnoughUnitsForTraining
+            raise NoDailyUnits
 
         if ALL_RACE_UNITS[self.race][self.town.barracs.\
         army[unit_type]].price * unit_count > self.gold:

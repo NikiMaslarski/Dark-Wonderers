@@ -17,7 +17,7 @@ class Hero:
         self.army = [0, 0, 0, 0]
         self.talent_points = 4
 
-    def level_up(self):
+    def check_for_level_up(self):
         if self.experience_to_level_up < self.experience:
             self.level += 1
             self.experience -= self.experience_to_level_up
@@ -49,3 +49,7 @@ class Hero:
 
         self.bonuses[bonus] += 1
         self.talent_points -= 1
+
+    def gain_experience(self, new_experiance):
+        self.experience += new_experiance
+        self.check_for_level_up()

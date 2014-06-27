@@ -17,7 +17,7 @@ class TestHero(unittest.TestCase):
 
     def test_level_up(self):
         self.hero.experience = 245
-        self.hero.level_up()
+        self.hero.check_for_level_up()
 
         self.assertEqual(self.hero.level, 2)
         self.assertEqual(self.hero.experience, 45)
@@ -44,6 +44,13 @@ class TestHero(unittest.TestCase):
         self.assertEqual(self.hero.bonuses['damage'], 0)
         self.hero.talent_points = 0
         self.assertRaises(NoTalentPoints, self.hero.upgrade_bonus, 'damage')
+
+    def test_gain_experience(self):
+        self.hero.gain_experience(300)
+
+        self.assertEqual(self.hero.level, 2)
+        self.assertEqual(self.hero.experience, 100)
+        self.assertEqual(self.hero.experience_to_level_up, 300)
 
 
 if __name__ == '__main__':
